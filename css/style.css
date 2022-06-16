@@ -25,6 +25,9 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
+
+  background-color: #A7E9AF;
+  border-radius: 5px;
 }
 
 .each-card img {
