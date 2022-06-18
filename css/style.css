@@ -18,6 +18,13 @@ h1 {
   margin: 40px 0 70px 0;
 }
 
+.cards{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}
+
 .each-card {
   width: 117px;
   height: 146px;
@@ -42,4 +49,8 @@ h1 {
   transform: rotateY(180deg);
   
   background-color: #083021;
+}
+
+.hidden {
+  display: none;
 }
