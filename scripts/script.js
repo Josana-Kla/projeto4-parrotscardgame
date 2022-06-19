@@ -1,17 +1,35 @@
 let numberOfCards = prompt("Com quantas cartas você quer jogar?");
-let parrotNames = ["bobross", "explody", "fiesta", "metal", "revertit", "triplets", "unicorn"];
+let parrotNames =["bobross", "explody", "fiesta", "metal", "revertit", "triplets", "unicorn"];
+let randomCards = []; 
+/* counter = 0;
+ *//* 
+while(counter < parrotNames.length) {
+  
+  randomCards.push(parrotNames[Math.floor(Math.random() * counter)]);
+  
+  counter++;
+}
+console.log(randomCards) */
 /* 
 function createCard() {}
 for(let i = 0; i < parrotNames; i++) {
-
 } */
 
-let card = `
-  <div class="each-card" onclick="flipCardImage(this)">
-    <img class="front-image"  src="./assets/front.png"/>
-    <img class="back-image hidden" src="./assets/${parrotNames[3]}parrot.gif"/>
-  </div>
-`;
+
+let card = "";
+for(let i=0; i < (numberOfCards/2); i++) {
+  /* let random = Math.floor(Math.random() * numberOfCards); */
+
+  card += `
+    <div class="each-card" onclick="flipCardImage(this)">
+      <img class="front-image"  src="./assets/front.png"/>
+      <img class="back-image hidden" src="./assets/${parrotNames[i]}parrot.gif"/>
+    </div>
+  `;
+  randomCards.push(`${card}`,`${card}`)
+
+}
+console.log(card)
 
 
 function isValidAndIsEven(numberOfCards) {
@@ -35,8 +53,9 @@ correctNumberOfCards()
 
 
 function putNumberOfCard(numberOfCards) {
+  let putCard = document.querySelector(".cards");
   for(let i = 0; i < numberOfCards; i++) {
-    document.querySelector(".cards").innerHTML += card;
+    putCard.innerHTML = randomCards[i] + randomCards[i];
   }
 }
 putNumberOfCard(numberOfCards)
@@ -54,7 +73,7 @@ function flipCardImage(element) {
   removeFrontImage(element, "front-image");
 }
 
-
+let hiddenImage;
 function removeFrontImage(element, currentImage) {
   let card = element.children[0];
   let cardFrontImageSelected = document.querySelector(`.${currentImage}.hidden`);
@@ -68,15 +87,14 @@ function removeFrontImage(element, currentImage) {
 
 }
 
-function showHiddenImage(element, newImage) {
-  let cardTwo = element.children[1];
-  let cardBackImageSelected = document.querySelector(`.${newImage}.hidden`);
 
+function showHiddenImage(elementTwo, newImage) {
+  let cardTwo = elementTwo.children[1];
+  let cardBackImageSelected = document.querySelector(`.${newImage}.hidden`);
+  
   if(cardBackImageSelected) {
     cardBackImageSelected.classList.add("hidden");
   }
-
+  
   cardTwo.classList.remove("hidden");
 }
-
-
