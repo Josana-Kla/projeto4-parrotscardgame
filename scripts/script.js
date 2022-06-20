@@ -5,16 +5,17 @@ let randomCards = [];
 let card = "";
 for(let i=0; i < (numberOfCards/2); i++) {
   parrotNames.sort(shuffle);
+
   card += `
     <div class="each-card" onclick="flipCardImage(this)">
       <img class="front-image img"  src="./assets/front.png"/>
       <img class="back-image img hidden" src="./assets/${parrotNames[i]}parrot.gif"/>
     </div>
   `;
-  randomCards.push(`${card}`,`${card}`)
+
+  randomCards.push(`${card}`,`${card}`);
 
 }
-console.log(card)
 
 function shuffle() { 
 	return Math.random() - 0.5; 
@@ -48,7 +49,8 @@ function putNumberOfCard(numberOfCards) {
 }
 putNumberOfCard(numberOfCards)
 
- 
+let click = []; 
+
 function flipCardImage(element) {
   let cardClicked = document.querySelector(".selectAndRotation");
 
@@ -57,25 +59,45 @@ function flipCardImage(element) {
   }
 
   element.classList.add("selectAndRotation");
-  
-  removeFrontImage(element, "front-image");
+  click += element;
+  removeFrontImage(element);
 }
 
-function removeFrontImage(element, currentImage) {
-  let card = element.children[0];
-  let cardFrontImageSelected = document.querySelector(`.${currentImage}.hidden`);
+function removeFrontImage(element) {
+  /* let card = document.querySelector("img"); */
+  let cardFrontImageSelected = element.querySelector(".front-image");
+  let cardBackImageSelected = element.querySelector(".hidden");
 
   if(cardFrontImageSelected !== null) {
+    /* card.classList.remove("hidden"); */
     cardFrontImageSelected.classList.remove("hidden");
+    cardBackImageSelected.classList.add("hidden");
   }
 
-  card.classList.add("hidden");
-  showHiddenImage(element, "back-image");
+  /* card.classList.add("hidden"); */
+  cardBackImageSelected.classList.remove("hidden");
+  cardFrontImageSelected.classList.add("hidden");
+ /*  showHiddenImage(element, "back-image"); */
 
 }
 
+/* function sameCards() {
 
-function showHiddenImage(elementTwo, newImage) {
+  if(click.length == 2) {
+    let card1 = click[0];
+    card1.classList.add("selectAndRotation")
+    let card2 = click[1];
+  
+    if(card1 === card2) {
+      console.log("são iguais")
+    } else {
+      console.log("não são iguais")
+    }
+  } 
+} */
+
+
+/* function showHiddenImage(elementTwo, newImage) {
   let cardTwo = elementTwo.children[1];
   let cardBackImageSelected = document.querySelector(`.${newImage}.hidden`);
   
@@ -84,62 +106,23 @@ function showHiddenImage(elementTwo, newImage) {
   }
   
   cardTwo.classList.remove("hidden");
-}
-
-/* function showHiddenImage(element, frontImage, backImage) {
-  let cardBackImageSelected = element.querySelector(`.${backImage}.hidden`);
-  let cardFrontImageSelected = document.querySelector(`.${frontImage}`);
-
-  if(cardBackImageSelected !== null) {
-    cardBackImageSelected.classList.remove("hidden");
-    cardFrontImageSelected.classList.add("hidden");
-  }
-  element.classList.remove("hidden");
 } */
 
-/*function removeFrontImage(element, currentImage) {
-  let card = element.children[0];
-  let cardFrontImageSelected = document.querySelector(`.${currentImage}.hidden`);
 
-  if(cardFrontImageSelected !== null) {
-    cardFrontImageSelected.classList.remove("hidden");
+
+/* let arrayEven = [];
+
+function keepCardsEven() {
+  let cardSelected = document.querySelector(".selectAndRotation");
+
+  if(cardSelected.classList.contains("selectAndRotation")) {
+    arrayEven.push(cardSelected)
   }
 
-  card.classList.add("hidden"); */
- /*  showHiddenImage(element, "back-image"); */
+} */
+
 
 
 /* 
-function removeFrontImage(element, image) {
-  let cardFrontImageSelected = element.querySelector(`.${image}.hidden`);
-
-  if(cardBackImageSelected.classList.contains("hidden")) {
-    cardBackImageSelected.classList.remove("hidden"); 
-    cardFrontImageSelected.classList.add("hidden");
-  }
-
-} */
-
-
-/* function showHiddenImage(element, newImage) {
-  let cardTwo = element.children[1];
-  let cardBackImageSelected = document.querySelector(`.${newImage}.hidden`);
-  
-  if(cardBackImageSelected) {
-    cardBackImageSelected.classList.add("hidden");
-  }
-  
-  cardTwo.classList.remove("hidden");
-} */
-/*
-let arrayEven = [];
-function keepEven() {
-  if(arrayEven.length == 2) {
-    let card1 = arrayEven[0];
-    let card2 = arrayEven[1];
-
-    if(card1 == card2) {
-
-    }
-  }
-} */
+keepCardsEven()
+console.log(arrayEven) */
